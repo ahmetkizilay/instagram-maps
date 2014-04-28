@@ -104,9 +104,9 @@ div.copy-link>input {
     border-radius: 4px;
 }
 
-div.copy-link>input:last-of-type {
+/*div.copy-link>input:last-of-type {
     margin-top: 0;
-}
+}*/
 
 
 div.small-button-panel {

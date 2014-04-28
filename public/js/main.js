@@ -9,8 +9,8 @@ $(document).ready(function () {"use strict";
 		}, 
 		pnlWait = $("#pnlWait"), 
 		pnlCopyLink = $("#pnlCopyLink"), 
-		txtCopyLink = $("#txtCopyLink"),
-		txtCopyLinkLong = $("#txtCopyLinkLong"),
+		 txtCopyLink = $("#txtCopyLink"),
+		// txtCopyLinkLong = $("#txtCopyLinkLong"),
 		win = $(window), 
 		win_height = win.height(), 
 		win_width = win.width(), 
@@ -62,7 +62,7 @@ $(document).ready(function () {"use strict";
 		copyLinkClickedLong = function(link, id) {
 			pnlCopyLink.css('display', 'table');
 			txtCopyLink.val(link);
-			txtCopyLinkLong.val(document.URL + '?q=' + id);
+			// txtCopyLinkLong.val(document.URL + '?q=' + id);
 			txtCopyLink.focus().select();
 		},
 		copyLinkClicked = function (id) {
