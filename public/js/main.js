@@ -58,6 +58,11 @@ $(document).ready(function () {"use strict";
 			console.log(res);
 		},
 		
+		copyLinkClickedLong = function(link) {
+			pnlCopyLink.css('display', 'table');
+			txtCopyLink.val(link);
+			txtCopyLink.focus().select();
+		},
 		copyLinkClicked = function (id) {
 			pnlWait.show();
 			
@@ -85,7 +90,8 @@ $(document).ready(function () {"use strict";
 						}).click(hidePnlViewImg);
 			
 			btnCopyLink.unbind('click.copylink');
-			btnCopyLink.bind('click.copylink', function() { copyLinkClicked(data.id); });
+			btnCopyLink.bind('click.copylink', function() { copyLinkClickedLong(data.link); });
+			//btnCopyLink.bind('click.copylink', function() { copyLinkClicked(data.id); });
 		
 		}, createMarker = function (data) {
 		var location = new google.maps.LatLng(data.location.latitude, data.location.longitude), icon = {
