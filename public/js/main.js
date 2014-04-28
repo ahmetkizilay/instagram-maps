@@ -141,7 +141,7 @@ $(document).ready(function () {"use strict";
 		}
 		pnlViewImg.hide(); pnlCopyLink.hide(); pnlWait.hide(); pnlInfo.hide();
 	}, handleOneImageSuccess = function (res) {
-
+		console.log(res);
 		if (res.meta.code !== 200) {
 			console.log("Could Not Find query");
 			return;
@@ -164,7 +164,7 @@ $(document).ready(function () {"use strict";
 			type : "GET",
 			url : "https://api.instagram.com/v1/media/" + id,
 			data : {
-				client_id : 'de68db96a1f94e1596b6803bebd6c8c0'
+				client_id : '683b547355b843baaddedb6559e2fc23'
 			},
 			dataType : "jsonp"
 		}).done(handleOneImageSuccess).fail(handleOneImageFail);
