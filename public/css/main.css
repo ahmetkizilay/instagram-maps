@@ -222,6 +222,19 @@ p.info-instruction {
   margin-top: 30px;   
 }
 
+p.info-contact {
+    font-family: Ubuntu, arial, verdana;
+    text-align: center;
+}
+
+p.info-contact a {
+    text-decoration: none;
+}
+
+p.info-contact a:last-of-type {
+    margin-left: 10px;
+}
+
 p.info-construction {
 	font-family: Ubuntu, arial, verdana;
 	text-align: center;
