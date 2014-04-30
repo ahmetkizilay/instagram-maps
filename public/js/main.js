@@ -9,8 +9,8 @@ $(document).ready(function () {"use strict";
 		}, 
 		pnlWait = $("#pnlWait"), 
 		pnlCopyLink = $("#pnlCopyLink"), 
-		 txtCopyLink = $("#txtCopyLink"),
-		// txtCopyLinkLong = $("#txtCopyLinkLong"),
+		txtCopyLink = $("#txtCopyLink"),
+		txtCopyLinkLong = $("#txtCopyLinkLong"),
 		win = $(window), 
 		win_height = win.height(), 
 		win_width = win.width(), 
@@ -26,7 +26,7 @@ $(document).ready(function () {"use strict";
 				rgx = /[?&]?([^=]+)=([^&]*)/g;
 
 			while(tokens = rgx.exec(str)) {
-				params[decodeURIComponent(tokens[1])] = params[decodeURIComponent(tokens[2])];
+				params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
 			}
 
 			return params;
@@ -62,8 +62,8 @@ $(document).ready(function () {"use strict";
 		copyLinkClickedLong = function(link, id) {
 			pnlCopyLink.css('display', 'table');
 			txtCopyLink.val(link);
-			// txtCopyLinkLong.val(document.URL + '?q=' + id);
-			txtCopyLink.focus().select();
+			txtCopyLinkLong.val(document.URL + '?q=' + id);
+			txtCopyLinkLong.focus().select();
 		},
 		copyLinkClicked = function (id) {
 			pnlWait.show();

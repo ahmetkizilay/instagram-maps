@@ -97,17 +97,16 @@ div.copy-link {
 }
 
 div.copy-link>input {
- 	width: 200px;   
+ 	width: 200px;
     vertical-align:center;
     margin-left: auto; margin-top: 20px; margin-bottom: 10px;
     display: table-cell;
     border-radius: 4px;
 }
 
-/*div.copy-link>input:last-of-type {
+div.copy-link>input:last-of-type {
     margin-top: 0;
-}*/
-
+}
 
 div.small-button-panel {
     position: relative;
