@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<title>INSTAGRAM MAP</title>
+		<link type="text/css" href="css/main.css" rel="Stylesheet" />
+	</head>
+	<body id="main_body">
+		<div id="map_canvas" style="width: 100%; height: 100%"></div>
+		<div id="pnlClear" class="button-panel">
+    		<div class="button-body">Clear</div>
+		</div>
+		<div id="pnlTrigInfo" class="button-panel">
+    		<div class="button-body">Info</div>
+		</div>
+		<div id="pnlInfo" class="info-panel">
+			<p class="info-italic">Dünyanın en basit, en zavallı, hatta en ahmak adamı bile, insanı hayrete düşürecek ne müthiş ve karışık bir ruha maliktir!.. Niçin bunu anlamaktan bu kadar kaçıyor ve insan dedikleri mahluku anlaşılması ve hakkında hüküm verilmesi en kolay şeylerden biri zannediyoruz?</p>
+			<p class="info-author">Kürk Mantolu Madonna, Sabahattin Ali</p>
+			<p class="info-instruction">double click somewhere on the map to view the latest instagram pictures around the region. explore anywhere in the globe.</p>
+			<p class="info-contact"><a href="https://github.com/artsince" target="_blank">github</a><a href="https://twitter.com/ahmetkizilay" target="_blank">twitter</a></p>
+		</div>
+		<div class="initial-instructions-panel" id="pnlInitInstr">
+			<p>double click anywhere on the map to start</p>
+		</div>
+		<div class="img-view-panel">
+			<div class="circle-button"></div>
+			<div class="img-container">
+				<img src="" />
+				<div id="btnCopyLink" class="button-panel">
+					<div class="button-body">
+						Link
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="pnlCopyLink" class="copy-link">
+			<input type="text" value="" readonly="readonly" id="txtCopyLink"></input>
+			<input type="text" value="" readonly="readonly" id="txtCopyLinkLong"></input>
+			<div id="btnCloseCopyLink" class="small-button-panel">
+			     <div class="button-body">OK</div>
+			</div>
+		</div>
+		<div id="pnlWait" class="wait-panel">
+			<span class="wait-p-1"></span>
+			<span class="wait-p-2"></span>
+			<span class="wait-p-3"></span>
+			<span class="wait-p-4"></span>
+		</div>
+
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-35928120-1']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+				var ga = document.createElement('script');
+				ga.type = 'text/javascript';
+				ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
+		<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript"
+			src="http://maps.googleapis.com/maps/api/js?key=AIzaSyA_mjK8Mxguw5LW12VgeKmOpcAzYhcFlNE&sensor=true"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+	</body>
+</html>
