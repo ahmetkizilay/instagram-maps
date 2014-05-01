@@ -213,7 +213,7 @@ $(document).ready(function () {"use strict";
 	$("#pnlTrigInfo").css('top', (win_height - 60) + 'px').css('left', '120px').click(function () {pnlInfo.show()});
 
 	// if there is a param entered, retrieve it
-	if (queryId !== "0") {
+	if (queryId) {
 		bringOneImage(queryId);
 	}
 	else {
