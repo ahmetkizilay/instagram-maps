@@ -36,6 +36,7 @@ $(document).ready(function () {"use strict";
 
 		hidePnlViewImg = function (event) {
 			pnlViewImg.hide();
+			window.history.replaceState({}, null, window.location.pathname);
 		},
 
 		handleURLSuccess = function(res) {
@@ -62,7 +63,7 @@ $(document).ready(function () {"use strict";
 		copyLinkClickedLong = function(link, id) {
 			pnlCopyLink.css('display', 'table');
 			txtCopyLink.val(link);
-			txtCopyLinkLong.val(document.URL + '?q=' + id);
+			txtCopyLinkLong.val(window.location.pathname + '?q=' + id);
 			txtCopyLinkLong.focus().select();
 		},
 		copyLinkClicked = function (id) {
