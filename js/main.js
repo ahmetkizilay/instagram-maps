@@ -215,6 +215,12 @@ $(document).ready(function () {"use strict";
 
 	$("#pnlTrigInfo").css('top', (win_height - 60) + 'px').css('left', '120px').click(function () {pnlInfo.show()});
 
+	$(document).keyup(function(e) {
+	  if (e.keyCode == 27) {
+			hidePnlViewImg();
+		}
+	});
+
 	// if there is a param entered, retrieve it
 	if (queryId) {
 		bringOneImage(queryId);
