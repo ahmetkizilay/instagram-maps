@@ -93,7 +93,7 @@ $(document).ready(function () {"use strict";
 
 			btnCopyLink.unbind('click.copylink');
 			btnCopyLink.bind('click.copylink', function() { copyLinkClickedLong(data.link, data.id); });
-			window.history.replaceState({}, null, window.location.pathname + 'q=' + data.id);
+			window.history.replaceState({}, null, window.location.pathname + '?q=' + data.id);
 			//btnCopyLink.bind('click.copylink', function() { copyLinkClicked(data.id); });
 
 		}, createMarker = function (data) {
