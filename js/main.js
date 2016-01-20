@@ -1,19 +1,19 @@
 $(document).ready(function () {"use strict";
-	var map, 
-	    markerArray = [], 
+	var map,
+	    markerArray = [],
 	    mapOptions = {
 			zoom : 13,
 			center : new google.maps.LatLng(41.02, 28.97),
 			mapTypeId : google.maps.MapTypeId.ROADMAP,
 			disableDoubleClickZoom : true
-		}, 
-		pnlWait = $("#pnlWait"), 
-		pnlCopyLink = $("#pnlCopyLink"), 
+		},
+		pnlWait = $("#pnlWait"),
+		pnlCopyLink = $("#pnlCopyLink"),
 		txtCopyLink = $("#txtCopyLink"),
 		txtCopyLinkLong = $("#txtCopyLinkLong"),
-		win = $(window), 
-		win_height = win.height(), 
-		win_width = win.width(), 
+		win = $(window),
+		win_height = win.height(),
+		win_width = win.width(),
 		btnCopyLink = $("#btnCopyLink"),
 		pnlViewImg = $(".img-view-panel"),
 		imgImgHolder = $(".img-container>img"),
@@ -33,13 +33,13 @@ $(document).ready(function () {"use strict";
 		},
 
 		queryId = getQueryParams(document.location.search).q,
-		
+
 		hidePnlViewImg = function (event) {
 			pnlViewImg.hide();
 		},
-		
+
 		handleURLSuccess = function(res) {
-			
+
 			pnlWait.hide();
 			if(res.id) {
 				txtCopyLink.val(res.id);
@@ -49,16 +49,16 @@ $(document).ready(function () {"use strict";
 				txtCopyLink.val("oops error... try again");
 			}
 		},
-		
+
 		handleURLFail = function(res) {
 			pnlWait.hide();
-			
+
 			txtCopyLink.val("oops error... try again");
-			
+
 			console.log("url fail");
 			console.log(res);
 		},
-		
+
 		copyLinkClickedLong = function(link, id) {
 			pnlCopyLink.css('display', 'table');
 			txtCopyLink.val(link);
@@ -67,34 +67,35 @@ $(document).ready(function () {"use strict";
 		},
 		copyLinkClicked = function (id) {
 			pnlWait.show();
-			
+
 			txtCopyLink.val("shortening..");
 			pnlCopyLink.css('display', 'table');
-			
+
 			$.ajax({
 				type : "GET",
 				url : "url?q=" + id,
 				dataType : "json"
 			}).done(handleURLSuccess).fail(handleURLFail);
-		}, 
-		
+		},
+
 		markerClicked = function (data) {
-			
+
 			pnlViewImg.hide();
 			imgImgHolder.attr('src', '');
-			
+
 			pnlViewImg.show();
 			pnlWait.show();
-			
+
 			imgImgHolder.attr('src', data.images.standard_resolution.url)
 						.load(function () {
 							pnlWait.hide();
 						}).click(hidePnlViewImg);
-			
+
 			btnCopyLink.unbind('click.copylink');
 			btnCopyLink.bind('click.copylink', function() { copyLinkClickedLong(data.link, data.id); });
+			window.history.replaceState({}, null, window.location.pathname + 'q=' + data.id);
 			//btnCopyLink.bind('click.copylink', function() { copyLinkClicked(data.id); });
-		
+
 		}, createMarker = function (data) {
 		var location = new google.maps.LatLng(data.location.latitude, data.location.longitude), icon = {
 			url : data.images.thumbnail.url,
@@ -117,7 +118,7 @@ $(document).ready(function () {"use strict";
 		for (i = 0; i < len; i = i + 1) {
 			createMarker(data[i]);
 		}
-		
+
 		pnlWait.hide();
 
 	}, handleFailResponse = function (jqxhr, status) {
@@ -140,6 +141,7 @@ $(document).ready(function () {"use strict";
 			markerArray.pop().setMap(null);
 		}
 		pnlViewImg.hide(); pnlCopyLink.hide(); pnlWait.hide(); pnlInfo.hide();
+		window.history.replaceState({}, null, window.location.pathname);
 	}, handleOneImageSuccess = function (res) {
 		console.log(res);
 		if (res.meta.code !== 200) {
@@ -154,9 +156,9 @@ $(document).ready(function () {"use strict";
 
 		createMarker(res.data);
 		markerClicked(res.data);
-		
+
 		map.panTo(new google.maps.LatLng(res.data.location.latitude, res.data.location.longitude));
-		
+
 	}, handleOneImageFail = function (jqxhr, status) {
 		console.log("error: " + status);
 	}, bringOneImage = function (id) {
@@ -176,25 +178,25 @@ $(document).ready(function () {"use strict";
 		hidePnlViewImg();
 		pnlInfo.hide();
 	});
-	
+
 	google.maps.event.addListener(map, 'dblclick', function (event) {
 		sendQuery(event.latLng.lat(), event.latLng.lng());
 	});
-	
-	if(navigator.geolocation) {	    
+
+	if(navigator.geolocation) {
 	    navigator.geolocation.getCurrentPosition(function(position) {
 	      var initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
 	      map.panTo(initialLocation);
 	      console.log("got your loc");
 	    }, function() {
-	    	console.log("no location");  
+	    	console.log("no location");
 	    });
   	}
-  	
+
 	pnlViewImg.css('top', (win_height * 0.5) - 250).css('left', (win_width * 0.5) - 250);
 	$(".circle-button").click(hidePnlViewImg);
 	btnCopyLink.css('top', '460px').css('left', '410px');
-	
+
 	pnlWait.css('top', (win_height * 0.5) - 10).css('left', (win_width * 0.5) - 62);
 	pnlCopyLink.css('top', (win_height * 0.5) - 20).css('left', (win_width * 0.5) - 125);
 	$("#btnCloseCopyLink").click(function () {
@@ -209,7 +211,7 @@ $(document).ready(function () {"use strict";
 		   .click(function () {
 		     pnlInfo.hide();
 		   });
-		   
+
 	$("#pnlTrigInfo").css('top', (win_height - 60) + 'px').css('left', '120px').click(function () {pnlInfo.show()});
 
 	// if there is a param entered, retrieve it
@@ -219,7 +221,7 @@ $(document).ready(function () {"use strict";
 	else {
 		$("#pnlInitInstr").css('top', ((win_height * 0.5) - 20) + 'px')
 						  .css('left', ((win_width * 0.5) - 250) + 'px')
-						  .show().fadeOut(5000);		                    	
+						  .show().fadeOut(5000);
 	}
 
     });
